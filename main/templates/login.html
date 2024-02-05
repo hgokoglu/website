@@ -1,0 +1,27 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<!--Login-->
+<div class="container">
+	<div class="input-group row h-auto p-3 mt-5 justify-content-center">
+		<form class="w-50 mt-4" id="login-form" method="POST">
+			{% csrf_token %}
+			<div class="form-control row justify-content-center">
+				<div class="form-floating my-4 p-1 col-8 mx-auto">
+					<input type="username" class="form-control form-control-md p-3 my-2" id="username" name="username" pattern=".*\S.*" required/>
+					<label for="username" class="mt-1 fw-semibold fs-5 text-black">Username</label>
+				</div>
+				<div class="form-floating my-4 p-1 col-8 mx-auto">
+					<input type="password" class="form-control form-control-md p-3 my-2" id="password" name="password" pattern=".*\S.*" required/>
+					<label for="password" class="mt-1 fw-semibold fs-5 text-black">Password</label>
+				</div>
+				<div class="form-floating my-4 mx-auto col-1 p-2">
+					<button form="login-form" class="btn btn-primary btn-md mx-auto" type="submit">Login</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

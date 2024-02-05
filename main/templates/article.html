@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+{% if article %}
+<div class="container-md my-5">
+	<div class="mx-auto text-wrap my-3 fs-2 fw-bold">{{ article.title }}</div>
+	<div class="w-100 text-center my-4">
+		{% if article.voice_file %}
+			<audio controls controlslist="nodownload" class="w-50" style="height: 40px;">
+				<source src="{{ article.voice_file.url }}" type="audio/mpeg" preload="auto">
+				<source src="{{ article.voice_file.url }}" type="audio/mp3" preload="auto">
+			</audio>
+		{% endif %}
+	</div>
+	<div class="w-100 row row-gap-2">
+		{% for para in article_text %}
+			<p class="fs-5">{{ para }}</p>
+		{% endfor %}
+	</div>
+	<div class="d-flex justify-content-start"><a class="text-black fs-5" href="{{ article.link }}">Original Article</a></div>
+</div>
+{% endif %}
+
+{% endblock %}

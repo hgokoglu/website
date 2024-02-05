@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div>
+		{% include "./search_bar.html" %}
+	</div>
+	<ul class="list-group list-group-flush my-3">
+		{% for article in results %}
+			<li class="list-group-item mb-3 d-flex justify-content-between">
+				{% autoescape on %}
+					<a class="fs-4 fw-semibold text-decoration-none text-black" href="{% url 'main:article' article.id %}">{{ article.title|safe }}</a>
+					<div class="col-4 d-flex justify-content-end">
+						{% if user.is_authenticated and not article.updated %}
+							<span class="btn btn-primary mx-3" style="height: 38px;">
+								<a class="align-self-right text-decoration-none text-white" href="{% url 'main:details' article.id %}">Edit</a>
+							</span>
+						{% endif %}
+						<span>{{ article.creation_date|date:"d, M, Y" }}</span>
+					</div>
+				{% endautoescape %}
+			</li>
+		{% empty %}
+		<div class="text-black fs-2 fw-bold text-center">
+			No Results.
+		</div>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

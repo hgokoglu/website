@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% if article_form %}
+	<!--Article-->
+	<div class="container-md my-5">
+		<form id="article-form" method="POST" enctype="multipart/form-data" action="{% url 'main:details' article.id%}">
+			{% csrf_token %}
+			<div class="input-group g-3 my-2">
+				<div class="col-auto mx-0">
+					<input type="text" class="form-control form-control-lg" value="{{ article.title|safe }}" name="title" required/>
+					<label for="voice_file" class="form-label">Voice File</label>
+					<input class="form-control" type="file" name="voice_file" id="voice_file">
+				</div>
+			</div>
+		</form>
+		<div class="col-auto mx-0 my-4">
+			<button form="article-form" class="btn btn-primary" type="submit">Submit</button>
+		</div>
+	</div>
+	<div class="container-md">
+		<div class="w-100 row row-gap-2">
+			{% for para in article_text %}
+				<p class="fs-5">{{ para }}</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

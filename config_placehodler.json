@@ -1,0 +1,10 @@
+{
+	"SECRET_KEY": "Generated Secret Key Here(Hash)",
+	"DATABASE_CREDENTIALS": {
+		"DB_NAME": "Database Name Here",
+		"USER": "root or similar proper DB username",
+		"PASSWORD": "Password for user from above",
+		"HOST": "localhost for same system and IP adress for remote DB",
+		"PORT": "3306 default port or custom port configured at the intallation of MySQL"
+	}
+}

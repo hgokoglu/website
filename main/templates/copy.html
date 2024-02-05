@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+{% if copy_form %}
+	<!--Copy-->
+	<div class="container-md mt-5 ">
+		<form method="POST">
+			{% csrf_token %}
+			<label for="text" class="form-label fs-3">Text to Read</label>
+			<textarea class="form-control" id="text" name="text" rows="6"></textarea>
+			<button class="btn btn-primary mt-2" type="submit">Submit</button>
+		</form>
+	</div>
+{% endif %}
+
+{% if copy_article %}
+	<div class="container-md mt-5">
+		<div class="mx-auto text-wrap my-3 fs-2 fw-bold">{{ copy_article.title }}</div>
+		<div class="w-100 text-center my-4">
+		<audio controls class="w-50" style="height: 40px;">
+			<source src="{{ copy_article.voice_file.url }}" type="audio/mpeg" preload="auto">
+			<source src="{{ copy_article.voice_file.url }}" type="audio/mp3" preload="auto">
+		</audio> 
+		</div>
+		<div class="w-100 row row-gap-2">	
+		{% for para in article_text %}
+			<p class="fs-5">{{ para }}</p>
+		{% endfor %}
+		</div>
+	</div>
+{% endif %}
+
+{% endblock %}

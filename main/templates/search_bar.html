@@ -1,0 +1,12 @@
+{% block searchbar %}
+
+<div class="col-8 mb-4 mx-auto mt-5">
+	<div class="input-group">
+		<form id="search-form" class="form-outline flex-fill" action="{% url 'main:search' %}" method="GET">
+			<input type="search" class="form-control form-control-lg" name="searched" pattern=".*\S.*" required/>
+		</form>
+		<button type="submit" class="btn btn-primary" form="search-form">Search</button>
+	</div>
+</div>
+
+{% endblock %}
